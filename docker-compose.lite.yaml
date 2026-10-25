@@ -130,19 +130,6 @@ services:
     networks:
       - dittofeed-network-lite
 
-  # Local development only; disabled unless the blob-storage profile is enabled.
-  blob-storage:
-    image: minio/minio
-    profiles: ["blob-storage"]
-    logging:
-      driver: "local"
-    environment:
-      MINIO_ROOT_USER: admin
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?MINIO_ROOT_PASSWORD must be set}
-    volumes:
-      - blob-storage:/data
-    command: server --console-address ":9001" /data
-
 volumes:
   postgres:
   clickhouse_lib:

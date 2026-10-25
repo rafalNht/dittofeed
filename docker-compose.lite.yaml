@@ -63,7 +63,6 @@ services:
       - dittofeed-network-lite
 
   temporal:
-    container_name: temporal
     restart: always
     logging:
       driver: "local"
@@ -86,7 +85,6 @@ services:
 
   temporal-ui:
     profiles: ["temporal-ui"]
-    container_name: temporal-ui
     restart: always
     logging:
       driver: "local"
@@ -134,7 +132,6 @@ volumes:
   postgres:
   clickhouse_lib:
   clickhouse_log:
-  blob-storage:
 
 networks:
   dittofeed-network-lite:

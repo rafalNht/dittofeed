@@ -47,7 +47,7 @@ services:
 
   admin-cli:
     image: dittofeed/dittofeed-admin-cli:${IMAGE_TAG:-v0.23.0}
-    entrypoint: []
+    entrypoint: null
     profiles: ["admin-cli"]
     command: tail -f /dev/null
     tty: true

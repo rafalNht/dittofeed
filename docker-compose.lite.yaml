@@ -1,3 +1,4 @@
+```yaml
 version: "3.9"
 
 x-database-credentials: &database-credentials
@@ -76,8 +77,6 @@ services:
       POSTGRES_SEEDS: ${DATABASE_HOST:-postgres}
     labels:
       kompose.volume.type: configMap
-    volumes:
-      - ./packages/backend-lib/temporal-dynamicconfig:/etc/temporal/config/dynamicconfig:ro
     networks:
       - dittofeed-network-lite
 
@@ -135,3 +134,4 @@ networks:
   dittofeed-network-lite:
     driver: bridge
     name: dittofeed-network-lite
+```

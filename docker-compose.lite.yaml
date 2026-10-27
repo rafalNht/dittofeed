@@ -1,4 +1,3 @@
-```yaml
 version: "3.9"
 
 x-database-credentials: &database-credentials
@@ -134,4 +133,3 @@ networks:
   dittofeed-network-lite:
     driver: bridge
     name: dittofeed-network-lite
-```

@@ -74,6 +74,7 @@ services:
       POSTGRES_USER: ${DATABASE_USER:-postgres}
       POSTGRES_PWD: ${DATABASE_PASSWORD:?DATABASE_PASSWORD must be set}
       POSTGRES_SEEDS: ${DATABASE_HOST:-postgres}
+      BIND_ON_IP: 0.0.0.0
     labels:
       kompose.volume.type: configMap
     networks:

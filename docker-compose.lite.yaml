@@ -1,4 +1,3 @@
-
 version: "3.9"
 
 x-database-credentials: &database-credentials
@@ -127,7 +126,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: ${CLICKHOUSE_CONTAINER_MEM_LIMIT:-4096}m
+          memory: ${CLICKHOUSE_CONTAINER_MEM_LIMIT:-8192}m
           cpus: "2.0"
     environment:
       <<: *clickhouse-credentials

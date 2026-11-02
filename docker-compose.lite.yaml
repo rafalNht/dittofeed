@@ -1,3 +1,4 @@
+
 version: "3.9"
 
 x-database-credentials: &database-credentials
@@ -25,13 +26,14 @@ services:
   lite:
     image: ${IMAGE_REPOSITORY:-dittofeed/dittofeed-lite}:${IMAGE_TAG:-v0.23.0}
     restart: always
-    command: node --max-old-space-size=${LITE_MEM_LIMIT:-824} ./packages/lite/dist/scripts/startLite.js --workspace-name=${WORKSPACE_NAME:-Default}
+    command: node --max-old-space-size=${LITE_MEM_LIMIT:-1600} ./packages/lite/dist/scripts/startLite.js --workspace-name=${WORKSPACE_NAME:-Default}
     logging:
       driver: "local"
     deploy:
       resources:
         limits:
-          memory: ${LITE_CONTAINER_MEM_LIMIT:-1024}m
+          memory: ${LITE_CONTAINER_MEM_LIMIT:-2048}m
+          cpus: "1.0"
     ports:
       - "3000:3000"
     depends_on:
@@ -66,6 +68,11 @@ services:
     restart: always
     logging:
       driver: "local"
+    deploy:
+      resources:
+        limits:
+          memory: 1024m
+          cpus: "1.0"
     depends_on:
       - postgres
     environment:
@@ -98,6 +105,11 @@ services:
     restart: always
     logging:
       driver: "local"
+    deploy:
+      resources:
+        limits:
+          memory: 2048m
+          cpus: "1.0"
     environment:
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD:?DATABASE_PASSWORD must be set}
       POSTGRES_USER: ${DATABASE_USER:-postgres}
@@ -115,7 +127,8 @@ services:
     deploy:
       resources:
         limits:
-          memory: ${CLICKHOUSE_CONTAINER_MEM_LIMIT:-2048}m
+          memory: ${CLICKHOUSE_CONTAINER_MEM_LIMIT:-4096}m
+          cpus: "2.0"
     environment:
       <<: *clickhouse-credentials
     volumes:
